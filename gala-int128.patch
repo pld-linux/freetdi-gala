@@ -1,0 +1,20 @@
+gcc supports __int128 on 64-bit archs only
+--- gala-19bcf7614c428f2b27f005d154aa546f96f83c74/cbset.h.orig	2018-11-09 13:44:07.000000000 +0100
++++ gala-19bcf7614c428f2b27f005d154aa546f96f83c74/cbset.h	2019-05-12 11:36:36.640750532 +0200
+@@ -1337,7 +1337,7 @@
+     return ret;
+ 
+   }else if(false && W<=16){ untested();
+-
++#ifdef __SIZEOF_INT128__
+     assert(CHUNKBITS==8);
+     // 64 = 8x8 bit...
+     __uint128_t ret=0;
+@@ -1349,6 +1349,7 @@
+ 
+     altret = ret; // % nHash;
+     return altret;
++#endif
+   }else{ untested();
+   }
+ 
