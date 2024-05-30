@@ -15,11 +15,13 @@ Source0:	https://github.com/freetdi/gala/archive/%{version}/gala-%{version}.tar.
 # Source0-md5:	374877cb2a2a3ad17c801f835b55a9cf
 Patch0:		gala-int128.patch
 Patch1:		gala-boost.patch
+Patch2:		gala-includes.patch
 URL:		https://github.com/freetdi/gala
 %if %{with tests}
 BuildRequires:	boost-devel
 BuildRequires:	libstdc++-devel >= 6:4.7
 %endif
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,6 +54,7 @@ danych, mając do nich pełny dostęp - na własną odpowiedzialność.
 %setup -q -n gala-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 # not autoconf configure
