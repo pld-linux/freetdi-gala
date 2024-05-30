@@ -6,17 +6,13 @@
 Summary:	C++ graph implementation
 Summary(pl.UTF-8):	Implementacja grafów w C++
 Name:		freetdi-gala
-# release "0" has some bugs/got some later improvements (conditional stx, DESTDIR support etc.), use post-0 snapshot
-%define	gitref	19bcf7614c428f2b27f005d154aa546f96f83c74
-%define	snap	20181110
-Version:	0
-Release:	1.%{snap}.1
+Version:	1
+Release:	1
 License:	GPL v3+
 Group:		Libraries
 #Source0Download; https://github.com/freetdi/gala/releases
-#Source0:	https://github.com/freetdi/gala/archive/%{version}/gala-%{version}.tar.gz
-Source0:	https://github.com/freetdi/gala/archive/%{gitref}/gala-%{snap}.tar.gz
-# Source0-md5:	0f7fdff6ad63092419919a880f7469d5
+Source0:	https://github.com/freetdi/gala/archive/%{version}/gala-%{version}.tar.gz
+# Source0-md5:	374877cb2a2a3ad17c801f835b55a9cf
 Patch0:		gala-int128.patch
 Patch1:		gala-boost.patch
 URL:		https://github.com/freetdi/gala
@@ -53,7 +49,7 @@ niskopoziomowym dostępem. Można wybrać dowolne kontenery i typy
 danych, mając do nich pełny dostęp - na własną odpowiedzialność.
 
 %prep
-%setup -q -n gala-%{gitref}
+%setup -q -n gala-%{version}
 %patch0 -p1
 %patch1 -p1
 

@@ -1,6 +1,4 @@
 * vertex_iterator::operator+(size_t) is ambiguous with boost::iterator_facade::operator+
-* is_same<S, boost::container::flat_set<typename S::value_type, typename S::key_compare, typename S::allocator_type>
-  is false with S=boost::container::flat_set<T> (when using default allocator)
 --- gala-19bcf7614c428f2b27f005d154aa546f96f83c74/boost.h.orig	2018-11-09 13:44:07.000000000 +0100
 +++ gala-19bcf7614c428f2b27f005d154aa546f96f83c74/boost.h	2019-05-12 14:54:45.483009816 +0200
 @@ -259,7 +259,7 @@
@@ -12,20 +10,3 @@
  			vertex_iterator operator+(size_t n) {
  				vertex_iterator a=*this;
  				a.advance(n);
---- gala-19bcf7614c428f2b27f005d154aa546f96f83c74/sfinae.h.orig	2018-11-09 13:44:07.000000000 +0100
-+++ gala-19bcf7614c428f2b27f005d154aa546f96f83c74/sfinae.h	2019-05-12 18:43:37.785282218 +0200
-@@ -93,6 +93,14 @@
- 	typedef T type;
- 	static constexpr bool value = true;
- };
-+template<class S, class T>
-+struct is_set<S, typename std::enable_if < std::is_same<
-+boost::container::flat_set<typename S::value_type, typename S::key_compare, void>, S
-+>::value, any >::type , T>{ //
-+
-+	typedef T type;
-+	static constexpr bool value = true;
-+};
- /*--------------------------------------------------------------------------*/
- /*--------------------------------------------------------------------------*/
- template<class A, class B=any, class T=void>
