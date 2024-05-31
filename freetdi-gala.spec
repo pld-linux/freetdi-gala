@@ -7,7 +7,7 @@ Summary:	C++ graph implementation
 Summary(pl.UTF-8):	Implementacja grafów w C++
 Name:		freetdi-gala
 Version:	1
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Libraries
 #Source0Download; https://github.com/freetdi/gala/releases
@@ -16,6 +16,7 @@ Source0:	https://github.com/freetdi/gala/archive/%{version}/gala-%{version}.tar.
 Patch0:		gala-int128.patch
 Patch1:		gala-boost.patch
 Patch2:		gala-includes.patch
+Patch3:		gala-c++2a.patch
 URL:		https://github.com/freetdi/gala
 %if %{with tests}
 BuildRequires:	boost-devel
@@ -55,6 +56,7 @@ danych, mając do nich pełny dostęp - na własną odpowiedzialność.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 # not autoconf configure
@@ -66,7 +68,7 @@ danych, mając do nich pełny dostęp - na własną odpowiedzialność.
 %if %{with tests}
 %{__make} check \
 	CXX="%{__cxx}" \
-	LOCAL_CXXFLAGS="%{rpmcxxflags} %{rpmcppflags} -std=gnu++11"
+	LOCAL_CXXFLAGS="%{rpmcxxflags} %{rpmcppflags}"
 %endif
 
 %install
